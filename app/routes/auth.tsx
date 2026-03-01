@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import {usePuterStore} from "~/lib/puter";
 import {useLocation, useNavigate} from "react-router";
 export const meta=()=>([
@@ -13,7 +13,7 @@ const Auth = () => {
 
     useEffect(()=>{
         if(auth.isAuthenticated) navigate(next);
-    }, [auth.isAuthenticated, next])
+    }, [auth.isAuthenticated, next, navigate])
     return (
         <main className="bg-[url('/images/bg-auth.svg')] bg-cover min-h-screen flex items-center justify-center">
             <div className="Gradient-border shadow-lg">

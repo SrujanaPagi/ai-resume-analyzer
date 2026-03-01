@@ -15,7 +15,7 @@ declare global {
                     data: string | File | Blob
                 ) => Promise<File | undefined>;
                 read: (path: string) => Promise<Blob>;
-                upload: (file: File[] | Blob[]) => Promise<FSItem>;
+                upload: (file: File[] | Blob[]) => Promise<FSItem | FSItem[]>;
                 delete: (path: string) => Promise<void>;
                 readdir: (path: string) => Promise<FSItem[] | undefined>;
             };
@@ -61,7 +61,7 @@ interface PuterStore {
             data: string | File | Blob
         ) => Promise<File | undefined>;
         read: (path: string) => Promise<Blob | undefined>;
-        upload: (file: File[] | Blob[]) => Promise<FSItem | undefined>;
+        upload: (file: File[] | Blob[]) => Promise<FSItem | FSItem[] | undefined>;
         delete: (path: string) => Promise<void>;
         readDir: (path: string) => Promise<FSItem[] | undefined>;
     };
