@@ -5,6 +5,7 @@ import {usePuterStore} from "~/lib/puter";
 import {convertPdfToImage} from "~/lib/pdf2img";
 import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../constants";
+import {useNavigate} from "react-router";
 
 const getUploadedItem = (uploadResult: FSItem | FSItem[] | undefined) => {
     if (!uploadResult) return null;
@@ -20,6 +21,7 @@ const normalizeFeedbackText = (value: string) => {
 
 const Upload=()=>{
     const { fs, ai, kv} = usePuterStore();
+    const navigate = useNavigate();
     const [isProcessing, setIsProcessing]=useState(false);
     const [statusText,setStatusText]=useState('');
     const [file, setFile] = useState<File | null>(null);
@@ -88,8 +90,9 @@ const Upload=()=>{
             (window as typeof window & { __lastResumeAnalysis?: typeof data }).__lastResumeAnalysis = data;
             console.log("Resume analysis object:", data);
 
-            setStatusText('Analysis complete');
-            setIsProcessing(false);
+            setStatusText('Analysis complete, redirecting...');
+            navigate(`/resume/${uuid}`);
+
         } catch (error) {
             const message = error instanceof Error ? error.message : 'Unexpected error during resume analysis';
             setStatusText(`Error: ${message}`);
