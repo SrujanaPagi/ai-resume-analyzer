@@ -26,7 +26,7 @@ const Resume=()=>{
             setLoadError('');
             setImageUrl(fallbackResume.imagePath);
             setResumeUrl(fallbackResume.resumePath);
-            setFeedback(fallbackResume.feedback as unknown as string);
+            setFeedback(fallbackResume.feedback as Feedback);
             setIsResumeLoading(false);
             return;
         }
